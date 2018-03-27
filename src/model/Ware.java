@@ -17,13 +17,22 @@ public class Ware {
      */
     private int amount;
 
+    /**
+     *
+     * @param type
+     * @param buyPrice
+     * @param amount
+     */
     public Ware(WareType type, int buyPrice, int amount){
         this.type = type;
         this.buyPrice = buyPrice;
         this.amount = amount;
     }
 
-
-
-
+    public Ware split(int amt){
+        amount = amount - amt;
+        Ware splitWare = new Ware(type, buyPrice, amt);
+        buyPrice += 2; //TODO
+        return splitWare;
+    }
 }
