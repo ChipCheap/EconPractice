@@ -9,7 +9,7 @@ public class Port {
     /**
      * Tile, which the port is located on.
      */
-    private Tile location;
+    private LandTile location;
     /**
      * A list of wares, that are sold at the Port.
      */
@@ -27,9 +27,9 @@ public class Port {
      */
     private ArrayList<Integer> needList;
 
-    public Port(){
+    public Port(LandTile location){
 
-        location = new Tile();
+        this.location = location;
         wares = new ArrayList<>();
         priceList = new ArrayList<> ();
         production = new ArrayList<>();
