@@ -27,9 +27,13 @@ public class Port {
      */
     private ArrayList<Integer> needList;
 
+    public Port(){
 
-
-
-
+        location = new Tile();
+        wares = new ArrayList<>();
+        priceList = new ArrayList<> ();
+        production = new ArrayList<>();
+        needList = new ArrayList<>();
+    }
 
 }

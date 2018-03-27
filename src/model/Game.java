@@ -3,12 +3,12 @@ package model;
 import java.util.ArrayList;
 
 /**
- * Represents the entire game and controls its flow
+ * Represents the entire game and controls its flow.
  */
 public class Game {
     //fields
     /**
-     * The player playing the game
+     * The player playing the game.
      */
     private Player player;
     /**
@@ -16,7 +16,7 @@ public class Game {
      */
     private Map map;
     /**
-     * The list of all existing ports
+     * The list of all existing ports.
      */
     private ArrayList<Port> ports;
 
