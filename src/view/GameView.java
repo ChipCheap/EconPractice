@@ -24,6 +24,7 @@ public class GameView{
      */
     public GameView(GameController gc){
         gameController = gc;
+        mapPane = new GridPane();
     }
 
     //methods
@@ -31,6 +32,7 @@ public class GameView{
      *
      */
     private void initMap(){
+        for(int i = 0; i < gameController.getGame().getMap().getTiles().length;)
         for(Tile[] tileArray : gameController.getGame().getMap().getTiles()){
             for(Tile tile : tileArray){
                 ;

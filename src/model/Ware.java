@@ -35,4 +35,8 @@ public class Ware {
         buyPrice += 2; //TODO
         return splitWare;
     }
+
+    public boolean equals(Ware ware) {
+        return buyPrice == ware.buyPrice && type == ware.type && amount == ware.amount;
+    }
 }
