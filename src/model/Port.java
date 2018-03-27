@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 
 /**
@@ -17,7 +19,7 @@ public class Port {
      */
     private ArrayList<Integer> priceList;
     /**
-     * The production of a port in the timespan.
+     * The production of a port in the time-span.
      */
     private ArrayList<Integer> production;
     /**
