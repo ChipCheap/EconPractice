@@ -24,7 +24,10 @@ public class Player {
         money = 300;
     }
     //methods
-    public void TradeGoods(){
+    /**
+     *
+     */
+    public void tradeGoods(){
 
 
     }

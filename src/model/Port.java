@@ -34,18 +34,18 @@ public class Port {
     public Port(LandTile location){
 
         this.location = location;
-        wares = new Ware[WareType.values().length];              // Not sure
+        wares = new Ware[WareType.values().length];
         priceList = new ArrayList<> ();
-        this.production = production;   //Not sure
+        production = new int[WareType.values().length];
         needList = new ArrayList<>();
     }
+    /**
+     * Adds a certain number of wares to a port depending on the production.
+     */
     public void produce(){
         for(int i = 0; i<wares.length;i++){
             wares[i].setAmount(wares[i].getAmount() + production[i]);
         }
-
-
-
     }
 
 }
