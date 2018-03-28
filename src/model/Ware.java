@@ -35,6 +35,12 @@ public class Ware {
         buyPrice += 2; //TODO
         return splitWare;
     }
+    public int getAmount(){
+        return amount;
+    }
+    public void setAmount(int amount){
+        this.amount = amount;
+    }
 
     public boolean equals(Ware ware) {
         return buyPrice == ware.buyPrice && type == ware.type && amount == ware.amount;

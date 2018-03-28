@@ -12,6 +12,9 @@ public class Ship {
      */
     private ArrayList<Ware> cargo;
 
+    /**
+     * Creation of mentioned above.
+     */
     public Ship(){
         location = new Tile();
         cargo = new ArrayList<>();

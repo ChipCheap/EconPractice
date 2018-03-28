@@ -13,7 +13,7 @@ public class Port {
     /**
      * A list of wares, that are sold at the Port.
      */
-    private ArrayList<Ware> wares;
+    private  Ware[] wares;
     /**
      * A list of the prices for their representative wares.
      */
@@ -21,19 +21,31 @@ public class Port {
     /**
      * The production of a port in the time-span.
      */
-    private ArrayList<Integer> production;
+    private int[] production;
     /**
      * The need of certain wares.
      */
     private ArrayList<Integer> needList;
 
+    /**
+     * Creation of mentioned above.
+     * @param location
+     */
     public Port(LandTile location){
 
         this.location = location;
-        wares = new ArrayList<>();
+        wares = new Ware[WareType.values().length];              // Not sure
         priceList = new ArrayList<> ();
-        production = new ArrayList<>();
+        this.production = production;   //Not sure
         needList = new ArrayList<>();
+    }
+    public void produce(){
+        for(int i = 0; i<wares.length;i++){
+            wares[i].setAmount(wares[i].getAmount() + production[i]);
+        }
+
+
+
     }
 
 }
