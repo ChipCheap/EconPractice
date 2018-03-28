@@ -1,4 +1,4 @@
-package model;
+package application.model;
 
 /**
  * The ware, that the player can trade with.
@@ -29,6 +29,12 @@ public class Ware {
         this.amount = amount;
     }
 
+    //methods
+    /**
+     * Splits an existing ware package into a new one with the given amount
+     * @param amt The number of wares to be split off
+     * @return The new package with the given amount and original buy price
+     */
     public Ware split(int amt){
         amount = amount - amt;
         Ware splitWare = new Ware(type, buyPrice, amt);

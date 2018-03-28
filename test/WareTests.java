@@ -1,8 +1,6 @@
-import model.Ware;
-import model.WareType;
+import application.model.Ware;
+import application.model.WareType;
 import org.junit.*;
-
-import static org.junit.Assert.*;
 
 public class WareTests {
 

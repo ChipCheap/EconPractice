@@ -1,4 +1,4 @@
-package model;
+package application.model;
 
 import java.util.ArrayList;
 
@@ -22,6 +22,7 @@ public class Player {
      */
     public Player(){
         money = 300;
+        ships = new ArrayList<>();
     }
     //methods
     /**

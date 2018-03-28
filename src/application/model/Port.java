@@ -1,4 +1,4 @@
-package model;
+package application.model;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class Port {
 
     /**
      * Creation of mentioned above.
-     * @param location
+     * @param location The location at which the port is located.
      */
     public Port(LandTile location){
 
@@ -39,11 +39,12 @@ public class Port {
         production = new int[WareType.values().length];
         needList = new ArrayList<>();
     }
+
     /**
      * Adds a certain number of wares to a port depending on the production.
      */
     public void produce(){
-        for(int i = 0; i<wares.length;i++){
+        for(int i = 0; i < wares.length; i++){
             wares[i].setAmount(wares[i].getAmount() + production[i]);
         }
     }
