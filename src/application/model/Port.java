@@ -17,7 +17,7 @@ public class Port {
     /**
      * A list of the prices for their representative wares.
      */
-    private ArrayList<Integer> priceList;
+    private int[] priceList;
     /**
      * The production of a port in the time-span.
      */
@@ -35,10 +35,12 @@ public class Port {
 
         this.location = location;
         wares = new Ware[WareType.values().length];
-        priceList = new ArrayList<> ();
+        priceList = Constants.BUY_PRICES;
+        priceList[0] = 2;
         production = new int[WareType.values().length];
         needList = new ArrayList<>();
     }
+
 
     /**
      * Adds a certain number of wares to a port depending on the production.
