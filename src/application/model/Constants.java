@@ -1,5 +1,8 @@
 package application.model;
 
+/**
+ * Consants used in the game.
+ */
 public class Constants {
     /**
      * List of prices for wares in ports.
