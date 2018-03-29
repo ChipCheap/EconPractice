@@ -5,8 +5,10 @@ import application.controller.GameController;
 import application.model.SeaTile;
 import application.model.Tile;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -42,6 +44,10 @@ public class GameView{
         initMap();
         mainScene = new Scene(mapPane);
         mainStage.setScene(mainScene);
+        mainStage.setResizable(true);
+        //TODO make this variable somewhere and also set it to some variable for re-use
+        mainStage.setMaxWidth(1600);
+        mainStage.setMaxHeight(900);
     }
 
     //methods
@@ -49,12 +55,32 @@ public class GameView{
      * Reads the map and fills the spots in the grid with the corresponding tile images
      */
     private void initMap(){
-        for(Tile[] tileArray : gameController.getGame().getMap().getTiles()){
+        Tile[][] tileMap = gameController.getGame().getMap().getTiles();
+        for(Tile[] tileArray : tileMap){
             for(Tile tile : tileArray){
-                mapPane.add(
-                        new ImageView(tile instanceof SeaTile ? ImageLoader.seaTile : ImageLoader.landTile),
-                        tile.getXPos(), tile.getYPos());
+                ImageView imageView =
+                        new ImageView(tile instanceof SeaTile ? ImageLoader.seaTile : ImageLoader.landTile);
+                imageView.setPreserveRatio(true);
+                imageView.setFitHeight((Math.min(1280, 720) - 100)/tileArray.length);
+                mapPane.add(imageView, tile.getXPos(), tile.getYPos());
             }
         }
+    }
+
+    /**
+     * example use for JavaFX elements
+     */
+    private void jfxExample(){
+        HBox hBox = new HBox(); //container parent node;
+        // note: could also be used as a child node and therefore added to another parent
+        Button button = new Button("Test"); //child node
+        hBox.getChildren().add(button); //parent adds child to its children list (getChildren(). )
+    }
+
+    /**
+     * Updates all view elements according to the re-newed model information
+     */
+    public void update(){
+       //TODO update all view elements here
     }
 }

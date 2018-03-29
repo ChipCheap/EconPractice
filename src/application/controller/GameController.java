@@ -2,7 +2,11 @@ package application.controller;
 
 import application.model.Game;
 import application.view.GameView;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * The controller unit for the running game
@@ -21,6 +25,10 @@ public class GameController {
      * The stage for the game
      */
     private Stage gameStage;
+    /**
+     *
+     */
+    private int frameCounter;
 
     //constructors
     /**
@@ -33,6 +41,16 @@ public class GameController {
     }
 
     //methods
+    private void updateAll(){
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000/60), e -> {
+            frameCounter++;
+            frameCounter = frameCounter % 60;
+            game.updateGame();
+            gameView.update();
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
 
     //getters
     /**

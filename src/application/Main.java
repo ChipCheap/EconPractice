@@ -8,6 +8,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage){
         new MainController(primaryStage);
+        primaryStage.setTitle("High Seas");
         primaryStage.show();
     }
 }

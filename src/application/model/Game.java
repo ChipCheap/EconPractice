@@ -1,5 +1,10 @@
 package application.model;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
 import java.util.ArrayList;
 
 /**
@@ -20,6 +25,7 @@ public class Game {
      */
     private ArrayList<Port> ports;
 
+
     //constructors
     /**
      *
@@ -31,6 +37,12 @@ public class Game {
     }
 
     //methods
+    /**
+     *
+     */
+    public void updateGame(){
+        //TODO update everything here
+    }
 
     //getters
     /**
