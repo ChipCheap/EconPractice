@@ -2,8 +2,11 @@ package application.view;
 
 import application.ImageLoader;
 import application.controller.GameController;
+import application.model.LandTile;
 import application.model.SeaTile;
+import application.model.Ship;
 import application.model.Tile;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -42,6 +45,7 @@ public class GameView{
         mainStage = gameController.getGameStage();
         mapPane = new GridPane();
         initMap();
+        initShips();
         mainScene = new Scene(mapPane);
         mainStage.setScene(mainScene);
         mainStage.setResizable(true);
@@ -59,11 +63,33 @@ public class GameView{
         for(Tile[] tileArray : tileMap){
             for(Tile tile : tileArray){
                 ImageView imageView =
-                        new ImageView(tile instanceof SeaTile ? ImageLoader.seaTile : ImageLoader.landTile);
+                        new ImageView(tile instanceof LandTile ?
+                                (((LandTile) tile).isPort() ?
+                                        ImageLoader.portTileImage : ImageLoader.landTileImage) :
+                                ImageLoader.seaTileImage);
                 imageView.setPreserveRatio(true);
-                imageView.setFitHeight((Math.min(1280, 720) - 100)/tileArray.length);
+                //TODO fix the screen height
+                imageView.setFitHeight((Math.min(1280, 720) - 100) / gameController.getGame().getMap().getySize());
                 mapPane.add(imageView, tile.getXPos(), tile.getYPos());
+                imageView.setOnMouseClicked(e -> {
+                    gameController.getGame().getPlayer().getShips().get(0).move(tile);
+                    System.out.println(tile);
+                });
             }
+        }
+    }
+
+    /**
+     * Initiates the ships in the view
+     */
+    private void initShips(){
+        for(Ship ship : gameController.getGame().getPlayer().getShips()){
+            ImageView imageView = new ImageView(ImageLoader.shipImage);
+            mapPane.add(imageView,
+                    ship.getLocation().getXPos(), ship.getLocation().getYPos());
+            imageView.setPreserveRatio(true);
+            //TODO fix copy pasta and height
+            imageView.setFitHeight((Math.min(1280, 720) - 100)/gameController.getGame().getMap().getySize());
         }
     }
 
@@ -81,6 +107,7 @@ public class GameView{
      * Updates all view elements according to the re-newed model information
      */
     public void update(){
+        initShips();
        //TODO update all view elements here
     }
 }

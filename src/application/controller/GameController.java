@@ -8,6 +8,8 @@ import javafx.animation.Timeline;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.Random;
+
 /**
  * The controller unit for the running game
  */
@@ -26,9 +28,11 @@ public class GameController {
      */
     private Stage gameStage;
     /**
-     *
+     * The current frame the game is on
      */
     private int frameCounter;
+    //testing
+    private Random r = new Random();
 
     //constructors
     /**
@@ -38,18 +42,27 @@ public class GameController {
         gameStage = primaryStage;
         game = new Game();
         gameView = new GameView(this);
+        startTimeline();
     }
 
     //methods
-    private void updateAll(){
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000/60), e -> {
-            frameCounter++;
-            frameCounter = frameCounter % 60;
-            game.updateGame();
-            gameView.update();
-        }));
+    /**
+     * Initiates the timeline which updates the game data
+     */
+    private void startTimeline(){
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000/60), e -> updateAll()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+    }
+
+    /**
+     * Updates the entire game and view 60 times per second
+     */
+    private void updateAll(){
+        frameCounter++;
+        //if(frameCounter % 60 == 0)
+            gameView.update();
+        game.updateGame(frameCounter);
     }
 
     //getters
@@ -63,7 +76,7 @@ public class GameController {
 
     /**
      * Returns the instance of the stage
-     * @return
+     * @return The instance of the stage
      */
     public Stage getGameStage() {
         return gameStage;

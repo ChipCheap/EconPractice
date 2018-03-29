@@ -1,10 +1,5 @@
 package application.model;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
-
 import java.util.ArrayList;
 
 /**
@@ -31,17 +26,53 @@ public class Game {
      *
      */
     public Game(){
-        player = new Player();
-        map = new Map();
+        player = new Player(1000);
+        map = new Map(30, 20);
         ports = new ArrayList<>();
+        addPorts();
+        player.addShip(new Ship(ports.get(0).getLocation()));
     }
 
     //methods
     /**
-     *
+     * Creates port instances on all port tiles
      */
-    public void updateGame(){
+    private void addPorts(){
+        for(Tile tile : map.getPortTiles()){
+            if(tile instanceof LandTile && ((LandTile) tile).isPort()) {
+                ports.add(new Port((LandTile) tile));
+            }
+        }
+    }
+
+    /**
+     *
+     * @param frame
+     */
+    public void updateGame(int frame){
+        moveShips(frame);
         //TODO update everything here
+    }
+
+    /**
+     * Updates all ships of the player
+     * @param frame The current frame decides whether a ship moves or not
+     */
+    private void moveShips(int frame){
+        for(Ship ship : player.getShips()){
+            if(frame % ship.getFramesPerTileSpeed() == 0){
+                //TODO implement pathfinder
+                //ship.move(new SeaTile(1,1));
+            }
+        }
+    }
+
+    /**
+     * Updates all ports of the game by applying the production and also updating the prices
+     * @param frame The current frame
+     */
+    private void updatePorts(int frame){
+        //TODO
     }
 
     //getters

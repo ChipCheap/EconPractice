@@ -32,11 +32,9 @@ public class Port {
      * @param location The location at which the port is located.
      */
     public Port(LandTile location){
-
         this.location = location;
         wares = new Ware[WareType.values().length];
-        priceList = Constants.BUY_PRICES;
-        priceList[0] = 2;
+        priceList = Constants.BUY_PRICES.clone();
         production = new int[WareType.values().length];
         needList = new ArrayList<>();
     }
@@ -51,4 +49,10 @@ public class Port {
         }
     }
 
+    //getters
+    /**
+     * Returns the location of the port
+     * @return The land tile on which the port is built upon
+     */
+    public LandTile getLocation() {return location;}
 }
