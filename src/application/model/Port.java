@@ -38,8 +38,7 @@ public class Port {
         production = new int[WareType.values().length];
         needList = new ArrayList<>();
     }
-
-
+    
     /**
      * Adds a certain number of wares to a port depending on the production.
      */
