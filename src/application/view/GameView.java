@@ -3,16 +3,16 @@ package application.view;
 import application.ImageLoader;
 import application.controller.GameController;
 import application.model.LandTile;
-import application.model.SeaTile;
 import application.model.Ship;
 import application.model.Tile;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 /**
  * Shows the in-game view.
@@ -35,6 +35,10 @@ public class GameView{
      * The Scene of the game
      */
     private Scene mainScene;
+    /**
+     *
+     */
+    private ArrayList<ShipImageView> shipImageViews = new ArrayList<>();
 
     //constructors
     /**
@@ -68,10 +72,14 @@ public class GameView{
                                         ImageLoader.portTileImage : ImageLoader.landTileImage) :
                                 ImageLoader.seaTileImage);
                 imageView.setPreserveRatio(true);
+
                 //TODO fix the screen height
-                imageView.setFitHeight((Math.min(1280, 720) - 100) / gameController.getGame().getMap().getySize());
+                imageView.setFitHeight((Math.min(1280, 720) - 100) / gameController.getGame().getMap().getYSize());
                 mapPane.add(imageView, tile.getXPos(), tile.getYPos());
                 imageView.setOnMouseClicked(e -> {
+                    if(imageView.getImage().equals(ImageLoader.portTileImage)){
+                        new PortWindow();
+                    }
                     gameController.getGame().getPlayer().getShips().get(0).move(tile);
                     System.out.println(tile);
                 });
@@ -84,12 +92,17 @@ public class GameView{
      */
     private void initShips(){
         for(Ship ship : gameController.getGame().getPlayer().getShips()){
+            ShipImageView imgV = new ShipImageView(ship, ImageLoader.shipImage,
+                    (Math.min(1280, 720) - 100) / gameController.getGame().getMap().getYSize()); //TODO export size
+            shipImageViews.add(imgV);
+            mapPane.add(imgV, ship.getLocation().getXPos(), ship.getLocation().getYPos());
+            /*
             ImageView imageView = new ImageView(ImageLoader.shipImage);
             mapPane.add(imageView,
                     ship.getLocation().getXPos(), ship.getLocation().getYPos());
             imageView.setPreserveRatio(true);
             //TODO fix copy pasta and height
-            imageView.setFitHeight((Math.min(1280, 720) - 100)/gameController.getGame().getMap().getySize());
+            imageView.setFitHeight((Math.min(1280, 720) - 100)/gameController.getGame().getMap().getYSize());*/
         }
     }
 
@@ -108,6 +121,15 @@ public class GameView{
      */
     public void update(){
         initShips();
+        updateShips();
        //TODO update all view elements here
+    }
+
+    private void updateShips(){
+        for(ShipImageView shipImgVw : shipImageViews){
+            mapPane.getChildren().remove(shipImgVw);
+            mapPane.add(shipImgVw, shipImgVw.getShip().getLocation().getXPos(),
+                    shipImgVw.getShip().getLocation().getYPos());
+        }
     }
 }

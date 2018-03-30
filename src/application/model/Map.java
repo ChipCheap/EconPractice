@@ -73,13 +73,13 @@ public class Map {
      *
      * @return
      */
-    public int getxSize() {return xSize;}
+    public int getXSize() {return xSize;}
 
     /**
      *
      * @return
      */
-    public int getySize() {return ySize;}
+    public int getYSize() {return ySize;}
 
     //setters
 }
