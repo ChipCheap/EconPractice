@@ -116,7 +116,10 @@ public class GameView{
         hBox.getChildren().add(button); //parent adds child to its children list (getChildren(). )
     }
 
-    private void InitPorts(){
+    /**
+     * TODO prolly remove this, since it is in initMap now
+     */
+    private void initPorts(){
 
     }
 
@@ -129,6 +132,9 @@ public class GameView{
        //TODO update all view elements here
     }
 
+    /**
+     * Removes all ships from the view and re-adds them with their updated location
+     */
     private void updateShips(){
         for(ShipImageView shipImgVw : shipImageViews){
             mapPane.getChildren().remove(shipImgVw);
