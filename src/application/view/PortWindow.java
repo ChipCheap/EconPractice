@@ -11,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.awt.*;
+
 /**
  *
  */
@@ -19,6 +21,7 @@ public class PortWindow extends Stage{
     /**
      *
      */
+    private static PortWindow instance = null;
     private Port port;
 
     //constructors
@@ -27,30 +30,60 @@ public class PortWindow extends Stage{
      * @param port
      */
     //TODO realize this as a singleton
-    public PortWindow(Port port){
+    private PortWindow(Port port){
         super();
         this.port = port;
         //TODO positioning, fill with scene, delete the weird window border and make it look like it is integrated
         this.show();
         HBox mainHBox = new HBox();
         Scene s = new Scene(mainHBox);
-
-        VBox priceList = new VBox();
-        Label price1 = new Label("Clothing 40");
+        HBox LeftHBox = new HBox();
+        VBox priceNames = new VBox();
         for(int i = 0; i < WareType.values().length; i++){
-            createLabel();
+            priceNames.getChildren().add(createNameLabel(i));
         }
-        priceList.getChildren().add(price1);
-        VBox shipMenu = new VBox();
+        VBox priceList = new VBox();
+        for(int i = 0; i < WareType.values().length; i++){
+            priceList.getChildren().add(createPriceLabel(i));
+        }
+        LeftHBox.getChildren().addAll(priceNames,priceList);
+        VBox RightVBox = new VBox();
         Label ships = new Label("ships");
 
-        shipMenu.setPadding(new Insets(1, 1, 1, 1));
-        shipMenu.getChildren().add(ships);
-        mainHBox.getChildren().addAll(priceList, shipMenu);
+        Button trade = new Button("Trade");
+        Button production = new Button("Manage Production");
+        Button politics = new Button("Politics");
+        Button events = new Button("Events");
+        Button empty = new Button("Niggerz");
+        HBox rightHBox = new HBox();
+
+
+        Button buyShip = new Button("Buy Ship");
+        Button invest = new Button("Invest");
+
+        rightHBox.getChildren().addAll(buyShip,invest);
+
+        RightVBox.setPadding(new Insets(1, 1, 1, 1));
+        RightVBox.getChildren().addAll(rightHBox,trade,production,politics,events,empty);
+        mainHBox.getChildren().addAll(LeftHBox, RightVBox);
         this.setScene(s);
+        this.setOnCloseRequest(e ->instance = null);
     }
 
-    private void createLabel(){
-
+    private Label createNameLabel(int i){
+        Label wares = new Label("" + WareType.values()[i]);
+        //Font font = new Font("ARIAL",3,30); TODO FONTS
+        //wares.Font(font);
+        return wares;
+    }
+    private Label createPriceLabel(int i){
+        Label price = new Label("" + port.getPriceList()[i]);
+        return price;
+    }
+    public static PortWindow createPortWindow(Port port){
+        if(instance == null){
+            instance = new PortWindow(port);
+        }
+        return instance;
     }
 }

@@ -54,4 +54,8 @@ public class Port {
      * @return The land tile on which the port is built upon
      */
     public LandTile getLocation() {return location;}
+
+    public int[] getPriceList() {
+        return priceList;
+    }
 }

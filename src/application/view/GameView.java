@@ -78,7 +78,7 @@ public class GameView{
                 mapPane.add(imageView, tile.getXPos(), tile.getYPos());
                 imageView.setOnMouseClicked(e -> {
                     if(imageView.getImage().equals(ImageLoader.portTileImage)){
-                        new PortWindow();
+                        PortWindow.createPortWindow(gameController.getGame().getPorts().get(0));
                     }
                     gameController.getGame().getPlayer().getShips().get(0).move(tile);
                     System.out.println(tile);
@@ -127,7 +127,6 @@ public class GameView{
      * Updates all view elements according to the re-newed model information
      */
     public void update(){
-        initShips();
         updateShips();
        //TODO update all view elements here
     }
