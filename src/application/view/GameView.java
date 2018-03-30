@@ -116,6 +116,10 @@ public class GameView{
         hBox.getChildren().add(button); //parent adds child to its children list (getChildren(). )
     }
 
+    private void InitPorts(){
+
+    }
+
     /**
      * Updates all view elements according to the re-newed model information
      */
