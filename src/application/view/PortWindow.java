@@ -55,6 +55,11 @@ public class PortWindow extends Stage{
         Button politics = new Button("Politics");
         Button events = new Button("Events");
         Button empty = new Button("Niggerz");
+        Button[] buttons = new Button[] {trade,production,politics,events,empty};
+        for(int i = 0; i < buttons.length;i++){
+            final int index = i;
+            buttons[i].setOnMouseClicked(e -> createSubWindow(index));
+        }
         HBox rightHBox = new HBox();
 
 
@@ -86,4 +91,12 @@ public class PortWindow extends Stage{
         }
         return instance;
     }
+    private void createSubWindow(int index){
+        if(PortSubWindow.getInstance() == null){
+            PortSubWindow.createInstance(port);
+        }
+        PortSubWindow.changeScene(index);
+    }
+
 }
+
