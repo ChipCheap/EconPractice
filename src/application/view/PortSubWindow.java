@@ -15,12 +15,16 @@ import java.awt.*;
 
 
 public class PortSubWindow extends Stage{
-
-    private static PortSubWindow instance = null;
-    private Port port;
-
     /**
-     * Constructor for PortSubWindow
+     * Sets the instance of the PortSubWindow to null
+     */
+    private static PortSubWindow instance = null;
+    /**
+     * Port from the Port class to realize the port Window.
+     */
+    private Port port;
+    /**
+     * Constructor for the PortSubWindow.
      */
     private PortSubWindow(Port port){
         super();
@@ -29,18 +33,24 @@ public class PortSubWindow extends Stage{
         this.show();
 
     }
-    public static PortSubWindow createPortSubWindow(Port port){
-        if(instance == null){
-            instance = new PortSubWindow(port);
-        }
-        return instance;
-    }
+    /**
+     * Getting the Instance.
+     * @return Returning the Instance.
+     */
     public static PortSubWindow getInstance(){
         return instance;
     }
+    /**
+     * Creating the Instance of the PortSubWindow.
+     * @param port Port from the Port class to realize the PortSubWindow.
+     */
     public static void createInstance(Port port){
         instance = new PortSubWindow(port);
     }
+    /**
+     * Change the Scene of the PortSubWindow, depending on the button pressed in the PortWindow
+     * @param index Number of the Button pressed in the PortWindow.
+     */
     public static void changeScene(int index){
 
         switch(index){

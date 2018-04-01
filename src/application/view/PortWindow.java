@@ -14,20 +14,23 @@ import javafx.stage.Stage;
 import java.awt.*;
 
 /**
- *
+ *Port Window, which holds the ports information(Wares,politics,events, etc..)
  */
 public class PortWindow extends Stage{
     //fields
     /**
-     *
+     *sets the PortWindow's instance to null.
      */
     private static PortWindow instance = null;
+    /**
+     *Port from the Port class to realize the port Window.
+     */
     private Port port;
 
     //constructors
     /**
-     *
-     * @param port
+     *Constructor for the PortWindow.
+     * @param port Port from the Port class to realize the port Window.
      */
     //TODO realize this as a singleton
     private PortWindow(Port port){
@@ -74,23 +77,44 @@ public class PortWindow extends Stage{
         this.setScene(s);
         this.setOnCloseRequest(e ->instance = null);
     }
-
+    /**
+     * Creates the name for the respectetive WareType.
+     * @param i index for lopp
+     * @return returns wares
+     */
     private Label createNameLabel(int i){
         Label wares = new Label("" + WareType.values()[i]);
         //Font font = new Font("ARIAL",3,30); TODO FONTS
         //wares.Font(font);
         return wares;
     }
+
+    /**
+     * Creates the prices for their respectetive WareTypes.
+     * @param i index for the lopp
+     * @return returns prices
+     */
     private Label createPriceLabel(int i){
         Label price = new Label("" + port.getPriceList()[i]);
         return price;
     }
+
+    /**
+     * creates the Port Window itsself.
+     * @param port port from the port class
+     * @return returns the current instance
+     */
     public static PortWindow createPortWindow(Port port){
         if(instance == null){
             instance = new PortWindow(port);
         }
         return instance;
     }
+
+    /**
+     * Creates the PortSubWindow next to the PortWindow.
+     * @param index index for the loop
+     */
     private void createSubWindow(int index){
         if(PortSubWindow.getInstance() == null){
             PortSubWindow.createInstance(port);
