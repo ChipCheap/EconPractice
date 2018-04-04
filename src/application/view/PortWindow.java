@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -51,6 +52,7 @@ public class PortWindow extends Stage{
         }
         LeftHBox.getChildren().addAll(priceNames,priceList);
         VBox RightVBox = new VBox();
+
         Label ships = new Label("ships");
         Button trade = new Button("Trade");
         Button production = new Button("Manage Production");
@@ -77,24 +79,24 @@ public class PortWindow extends Stage{
         this.setOnCloseRequest(e ->instance = null);
     }
     /**
-     * Creates the name for the respectetive WareType.
+     * Creates the name for the respectetive WareType and sets their font.
      * @param i index for lopp
      * @return returns wares
      */
     private Label createNameLabel(int i){
         Label wares = new Label("" + WareType.values()[i]);
-        //Font font = new Font("ARIAL",3,30); TODO FONTS
-        //wares.Font(font);
+        wares.setFont(Font.font("Verdana", 20 ));
         return wares;
     }
 
     /**
-     * Creates the prices for their respectetive WareTypes.
+     * Creates the prices for their respectetive WareTypes and sets their font.
      * @param i index for the lopp
      * @return returns prices
      */
     private Label createPriceLabel(int i){
         Label price = new Label("" + port.getPriceList()[i]);
+        price.setFont(Font.font("Verdana", 20 ));
         return price;
     }
 

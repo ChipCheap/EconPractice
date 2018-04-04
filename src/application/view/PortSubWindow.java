@@ -3,6 +3,7 @@ package application.view;
 import application.model.Port;
 import application.model.WareType;
 import javafx.geometry.Insets;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,9 +11,9 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.awt.*;
 
 
 public class PortSubWindow extends Stage{
@@ -60,6 +61,14 @@ public class PortSubWindow extends Stage{
                 createTrade();
                 break;
             case 1:
+                createProduction();
+                break;
+            case 2:
+                createPolitics();
+                break;
+            case 3:
+                createEvents();
+                break;
 
         }
     }
@@ -121,26 +130,34 @@ public class PortSubWindow extends Stage{
         setScene(s);
 
     }
+    private void createProduction(){
 
+    }
+    private void createPolitics(){
+
+    }
+    private void createEvents(){
+
+    }
     /**
-     * Creates the name for the respectetive WareType.
+     * Creates the name for the respectetive WareType and sets their font.
      * @param i index for lopp
      * @return returns wares
      */
     private Label createNameLabel(int i){
         Label wares = new Label("" + WareType.values()[i]);
-        //Font font = new Font("ARIAL",3,30); TODO FONTS
-        //wares.Font(font);
+        wares.setFont(Font.font("Verdana", 20 ));
         return wares;
     }
 
     /**
-     * Creates the prices for their respectetive WareTypes.
+     * Creates the prices for their respectetive WareTypes and sets their font.
      * @param i index for the lopp
      * @return returns prices
      */
     private Label createPriceLabel(int i){
         Label price = new Label("" + port.getPriceList()[i]);
+        price.setFont(Font.font("Verdana", 20 ));
         return price;
     }
 
