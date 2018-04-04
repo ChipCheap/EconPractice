@@ -52,7 +52,6 @@ public class PortWindow extends Stage{
         LeftHBox.getChildren().addAll(priceNames,priceList);
         VBox RightVBox = new VBox();
         Label ships = new Label("ships");
-
         Button trade = new Button("Trade");
         Button production = new Button("Manage Production");
         Button politics = new Button("Politics");
@@ -119,7 +118,7 @@ public class PortWindow extends Stage{
         if(PortSubWindow.getInstance() == null){
             PortSubWindow.createInstance(port);
         }
-        PortSubWindow.changeScene(index);
+        PortSubWindow.getInstance().changeScene(index);
     }
 
 }
