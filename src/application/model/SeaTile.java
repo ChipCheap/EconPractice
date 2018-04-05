@@ -11,7 +11,6 @@ public class SeaTile extends Tile{
      * @param y The y-coordinate of the tile
      */
     public SeaTile(int x, int y){
-        xPos = x;
-        yPos = y;
+        coordinates = new Tuple(x, y);
     }
 }

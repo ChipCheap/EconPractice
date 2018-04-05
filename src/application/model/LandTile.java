@@ -17,8 +17,7 @@ public class LandTile extends Tile{
      * @param y The y-coordinate of the tile
      */
     public LandTile(int x, int y, boolean isPort){
-        xPos = x;
-        yPos = y;
+        coordinates = new Tuple(x, y);
         this.isPort = isPort;
     }
 

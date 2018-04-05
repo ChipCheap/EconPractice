@@ -62,6 +62,7 @@ public class GameView{
     /**
      * Reads the map and fills the spots in the grid with the corresponding tile images
      */
+    //TODO make scrollable map
     private void initMap(){
         Tile[][] tileMap = gameController.getGame().getMap().getTiles();
         for(Tile[] tileArray : tileMap){
@@ -104,16 +105,6 @@ public class GameView{
             //TODO fix copy pasta and height
             imageView.setFitHeight((Math.min(1280, 720) - 100)/gameController.getGame().getMap().getYSize());*/
         }
-    }
-
-    /**
-     * example use for JavaFX elements
-     */
-    private void jfxExample(){
-        HBox hBox = new HBox(); //container parent node;
-        // note: could also be used as a child node and therefore added to another parent
-        Button button = new Button("Test"); //child node
-        hBox.getChildren().add(button); //parent adds child to its children list (getChildren(). )
     }
 
     /**

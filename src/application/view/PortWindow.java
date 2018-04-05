@@ -6,25 +6,22 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.awt.*;
-
 /**
- *Port Window, which holds the ports information(Wares,politics,events, etc..)
+ * Port Window, which holds the ports information(Wares,politics,events, etc..)
  */
 public class PortWindow extends Stage{
     //fields
     /**
-     *sets the PortWindow's instance to null.
+     * Sets the PortWindow's instance to null.
      */
     private static PortWindow instance = null;
     /**
-     *Port from the Port class to realize the port Window.
+     * Port from the Port class to realize the port Window.
      */
     private Port port;
 
@@ -43,10 +40,13 @@ public class PortWindow extends Stage{
         Scene s = new Scene(mainHBox);
         HBox LeftHBox = new HBox();
         VBox priceNames = new VBox();
+
         for(int i = 0; i < WareType.values().length; i++){
             priceNames.getChildren().add(createNameLabel(i));
         }
+
         VBox priceList = new VBox();
+
         for(int i = 0; i < WareType.values().length; i++){
             priceList.getChildren().add(createPriceLabel(i));
         }
@@ -59,7 +59,7 @@ public class PortWindow extends Stage{
         Button politics = new Button("Politics");
         Button events = new Button("Events");
         Button empty = new Button("Niggerz");
-        Button[] buttons = new Button[] {trade,production,politics,events,empty};
+        Button[] buttons = new Button[] {trade, production, politics, events, empty};
         for(int i = 0; i < buttons.length;i++){
             final int index = i;
             buttons[i].setOnMouseClicked(e -> createSubWindow(index));
